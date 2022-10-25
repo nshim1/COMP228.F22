@@ -5,7 +5,7 @@ public abstract class Book {
     protected double price;
     protected int year;
     public Book(){
-        
+
     }
 
     public Book(String title, String ISBN, String publisher, double price, int year) {
@@ -15,8 +15,8 @@ public abstract class Book {
         this.price = price;
         this.year = year;
     }
-    abstract public void setPrice(double price);
-    abstract public String getGenre();
+    public abstract void setPrice(double price);
+    public abstract String getGenre();
 
     public String getTitle() {
         return title;
@@ -41,7 +41,9 @@ public abstract class Book {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-
+    public double getPrice(){
+        return price;
+    }
     public int getYear() {
         return year;
     }
@@ -53,10 +55,10 @@ public abstract class Book {
     @Override
     public String toString() {
         return "Genre: " + getGenre()+'\n'+
-                "Book title: " + title + "\n" +
-                "ISBN: " + ISBN + '\n' +
-                "publisher: " + publisher + '\n' +
-                "price: " + price + '\n'+
-                "year: " + year;
+                "Book title: " + getTitle() + "\n" +
+                "ISBN: " + getISBN() + '\n' +
+                "publisher: " + getPublisher() + '\n' +
+                "price: " + (getPrice()) + "$\n"+
+                "year: " + getYear();
     }
 }

@@ -1,31 +1,44 @@
 package excercise1;
 
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Insurance healthInsurance = new Health();
-        Insurance lifeInsurance = new Life();
-        Insurance[] insurance = new Insurance[2];
-        insurance[0]= healthInsurance;
-        insurance[1]= lifeInsurance;
+        Insurance[] insurance = new Insurance[]{new Life(), new Health()};
+        try {
+            System.out.println("What is your insurance type?");
+            String typeInput = scanner.nextLine();
+            if (typeInput == "health") {
+                insurance[0].setType(typeInput);
 
-
-
-
-        System.out.println("What is your insurance type?");
-        String typeInput = scanner.nextLine();
-        switch (typeInput){
-            case "health":
-                healthInsurance.setType(typeInput);
-                break;
-            case "life":
+            } else if (typeInput == "life") {
                 insurance[1].setType(typeInput);
 
+            }else{
+                throw new Exception("wrong type try again");
+            }
+            System.out.println("What is your insurance cost?");
+            double costInput = scanner.nextDouble();
+            if(costInput >0 ){
+                switch (typeInput){
+                    case "health":
+                        insurance[0].setMonthlyCost(costInput);
+                        break;
+                    case "life":
+                        insurance[1].setMonthlyCost(costInput);
+                        break;
+                }
+
+                throw new Exception("wrong: put the valid number");
+            }
 
         }
-        System.out.println("What is your insurance cost?");
-        double costInput = scanner.nextDouble();
+        catch (Exception e) {
+            System.out.println(e);
+        }
+
+
 
     }
 }
